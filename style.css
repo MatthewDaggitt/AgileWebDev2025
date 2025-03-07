@@ -1,0 +1,26 @@
+body{
+    background-color: pink;
+}
+
+h1,h2,h3,h4,h5,h6{
+    color: blue;
+    background-color: rgba(40, 206, 173, 0.747);
+}
+#pageHeader{
+    background-color: rgba(35, 225, 127, 0.361);
+    color: rgb(255, 0, 153);
+}
+.class1:hover{
+    background-color: rgba(255, 0, 0, 0.5);
+    font-size: larger;
+
+}
+#halfPage{
+    border: 2px dotted black;
+}
+
+tr:hover td{
+    text-decoration: underline;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+}
