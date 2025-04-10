@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Agile Web Dev Signup</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+
+    <script>
+        window.onload = function (e) {
+            document.getElementById('signupButton').onclick = function (e) {
+                window.location = '{{ url_for("signup") }}';
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <div id="halfPage">
+        <h2 class="class1">Existing projects</h2>
+
+        <button id="signupButton"> Register new project </button>
+        <table cellpadding="10" cellspacing="0">
+            <tr>
+                <th>Sr.N0.</th>
+                <th>Student 1</th>
+                <th>Student 2</th>
+                <th>Student 3</th>
+                <th> Student 4</th>
+
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>00123456</td>
+                <td>00123452</td>
+                <td>00123453</td>
+                <td>00123451</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>20123456</td>
+                <td>20123452</td>
+                <td>20123453</td>
+                <td>20123451</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>02123456</td>
+                <td>04123452</td>
+                <td>03123453</td>
+                <td>01123451</td>
+            </tr>
+        </table>
+    </div>
+    <a href="#pageHeader">Go to Top</a>
+</body>
+
+</html>

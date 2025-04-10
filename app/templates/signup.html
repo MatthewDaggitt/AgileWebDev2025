@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>First Page</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <script src="functions.js"> </script>
+
+    <script>
+        function validateStudents() {
+            var groupMembers = document.getElementById('groupMembers').value;
+            var student1 = document.getElementById('student1').value;
+            var student2 = document.getElementById('student2').value;
+            var student3 = document.getElementById('student3').value;
+            var student4 = document.getElementById('student4').value;
+            var email = document.getElementById('email').value;
+
+            if (groupMembers < 1 || groupMembers > 8) {
+                alert("Number of group members must be between 1 and 6.");
+                return false;
+            }
+
+            if (groupMembers >= 1 && student1 === "") {
+                alert("Student 1 ID is required.");
+                return false;
+            }
+            if (groupMembers >= 2 && student2 === "") {
+                alert("Student 2 ID is required.");
+                return false;
+            }
+            if (groupMembers >= 3 && student3 === "") {
+                alert("Student 3 ID is required.");
+                return false;
+            }
+            if (groupMembers == 4 && student4 === "") {
+                alert("Student 4 ID is required.");
+                return false;
+            }
+
+            var studentIDs = [student1, student2, student3, student4].filter(Boolean);
+            var uniqueIDs = new Set(studentIDs);
+            if (uniqueIDs.size !== studentIDs.length) {
+                alert("Student IDs must be unique.");
+                return false;
+            }
+
+            if (!validateEmail(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateEmail(email) {
+            var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="halfPage">
+        <h2 class="class1">Group project sign-up</h2>
+        <form action="">
+
+            <input type="number" name="grpMembers" id="groupMembers" placeholder="Enter number of group members" min="1"
+                max="4"><br><br>
+            {{ form.hidden_tag() }}
+            {{ form.student1.label}}
+            {{ form.student1(size=8)}} <br><br>
+            {{ form.student2.label }}</label>
+            {{ form.student2(size=8) }}<br><br>
+            {{ form.student3.label }}</label>
+            {{ form.student3(size=8) }}<br><br>
+            {{ form.student4.label }}</label>
+            {{ form.student4(size=8) }}<br><br>
+
+            {{ form.submit(method='POST') }}
+        </form>
+
+        <a href="#pageHeader">Go to Top</a>
+
+
+</body>
+
+</html>
