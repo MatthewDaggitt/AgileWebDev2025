@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Group Project organiser</title>
+
+<script>    
+    window.onload = function() {
+        document.getElementById("registerProjectBtn").onclick = function() {
+            window.location.href = "{{ url_for('register_project') }}";
+        };
+    };
+</script>
+{% endblock %}
+
+{% block body %}
+<div id="halfPage">
+    <button id="registerProjectBtn"> Register project </button>
+    <table cellpadding="10" cellspacing="0">
+        <tr>
+            <th>Project ID</th>
+            <th>Student 1</th>
+            <th>Student 2</th>
+            <th>Student 3</th>
+            <th>Student 4</th>
+        </tr>
+        {% for project in projects %}
+        <tr>
+            <td>1</td>
+            {% for student in project.students %}
+            <td> {{ student }} </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
