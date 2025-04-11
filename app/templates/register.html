@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Register new project</title>
+
+<script>    
+    window.onload = function() {
+        document.getElementById("cancelBtn").onclick = function() {
+            window.location.href = "{{ url_for('view_projects') }}";
+        };
+    };
+</script>
+{% endblock %}
+
+{% block body %}
+<div id="halfPage">
+    <h2 class="class1">Group project sign-up</h2>
+    <form action="{{ url_for('register_project') }}" method="POST">
+
+        <input type="number" name="grpMembers" id="groupMembers" placeholder="Enter number of group members" min="1"
+            max="4"><br><br>
+        {{ form.hidden_tag() }}
+        
+        {{ form.student_id_1.label }}<br>
+        {{ form.student_id_1 }}<br><br>
+        {{ form.student_id_2.label }}<br>
+        {{ form.student_id_2 }}<br><br>
+        {{ form.student_id_3.label }}<br>
+        {{ form.student_id_3 }}<br><br>
+        {{ form.student_id_4.label }}<br>
+        {{ form.student_id_4 }}<br><br>
+
+        <input type="submit" value="Submit" class="class1">
+    </form>
+
+    <button id="cancelBtn"> Cancel </button>
+</div>
+{% endblock %}
