@@ -25,7 +25,7 @@
         </tr>
         {% for project in projects %}
         <tr>
-            <td>1</td>
+            <td>{{ project.id }}</td>
             {% for student in project.students %}
             <td> {{ student }} </td>
             {% endfor %}
