@@ -1,15 +1,18 @@
 from app import db
 
+class Student(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=True)
+
+    project = db.relationship('Project', back_populates='students')
+
+    def __str__(self):
+        return f"Student {self.id} {self.project_id}"
+    
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    student_one = db.Column(db.String(8), nullable=False)
-    student_two = db.Column(db.String(8), nullable=False)
-    student_three = db.Column(db.String(8), nullable=False)
-    student_four = db.Column(db.String(8), nullable=False)
 
-    @property
-    def students(self):
-        return [self.student_one, self.student_two, self.student_three, self.student_four]
+    students = db.relationship('Student', back_populates='project')
 
     def is_student_assigned(student_id):
         return Project.query.filter(
@@ -18,3 +21,7 @@ class Project(db.Model):
             (Project.student_3 == student_id) |
             (Project.student_4 == student_id)
         ).first() is not None
+    
+    def __str__(self):
+        return f"Project {self.id} {self.students}"
+    
