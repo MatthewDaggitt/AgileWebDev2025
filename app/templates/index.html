@@ -22,6 +22,7 @@
             <th>Student 2</th>
             <th>Student 3</th>
             <th>Student 4</th>
+            <th> </th>
         </tr>
         {% for project in projects %}
         <tr>
@@ -29,6 +30,11 @@
             {% for student in project.students %}
             <td> {{ student.id }} </td>
             {% endfor %}
+            <td>
+                {{ if current_user.project_id == project.id }}
+                    <button> Delete </button>
+                {{ endif }}
+            </td>
         </tr>
         {% endfor %}
     </table>

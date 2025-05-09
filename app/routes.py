@@ -1,11 +1,39 @@
-from flask import redirect, render_template, request, url_for
+from flask import flash, redirect, render_template, request, url_for
+from flask_login import login_required, login_user, logout_user
 from app import application
-from app.forms import RegisterProjectForm
+from app.controllers import try_to_login_user
+from app.forms import LoginForm, RegisterProjectForm
 from app.models import Project, Student
 from app import db
 
+
 @application.route('/')
+@application.route("/login", methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+
+    if request.method == "POST":
+        student_id = form.student_id.data
+        password = form.password.data
+        registering = form.register.data
+
+        result = try_to_login_user(student_id, password, registering)
+        if isinstance(result, Student):
+            login_user(result)
+            return redirect(url_for('view_projects'))    
+        else:
+            flash(result, 'error')
+
+    return render_template('login.html', form=form)
+
+@application.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
+
 @application.route('/projects')
+@login_required
 def view_projects():
     projects = Project.query.all()
     for p in projects:
@@ -13,6 +41,7 @@ def view_projects():
     return render_template('index.html', projects=projects)
 
 @application.route('/register', methods=['GET', 'POST'])
+@login_required
 def register_project():
     form = RegisterProjectForm()
     
@@ -41,7 +70,3 @@ def register_project():
         return redirect(url_for('view_projects'))
     
     return render_template('register.html', form=form)
-
-@application.route("/login", methods=['GET', 'POST'])
-def login():
-    return render_template('login.html')
