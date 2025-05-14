@@ -1,11 +1,10 @@
-from app import application
-from app.forms import LoginForm, RegisterProjectForm
+from flask import session
 from app.models import Project, Student
 from app import db
 
 
 def try_to_login_user(student_id, password, registering):
-    student = Student.query.get(student_id)
+    student = db.session.get(Student, student_id)
     if registering:
         if student:
             return f"User {student.id} already exists"
