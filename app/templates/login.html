@@ -7,7 +7,7 @@
 {% block body %}
     <div class="login-container">
         <h1>Login</h1>
-        <form method="POST" action="{{ url_for('login') }}">
+        <form method="POST" action="{{ url_for('main.login') }}">
             {{ form.hidden_tag() }}
             <div class="form-group">
                 {{ form.student_id.label }}

@@ -1,6 +1,4 @@
-from app import application
-from app.forms import LoginForm, RegisterProjectForm
-from app.models import Project, Student
+from app.models import Student
 from app import db
 
 
@@ -22,5 +20,5 @@ def try_to_login_user(student_id, password, registering):
         elif not student.check_password(password):
             return 'Wrong password'
         else:
-            return student
+            return "nothing" # student
         
