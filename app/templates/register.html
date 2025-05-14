@@ -6,7 +6,7 @@
 <script>    
     window.onload = function() {
         document.getElementById("cancelBtn").onclick = function() {
-            window.location.href = "{{ url_for('view_projects') }}";
+            window.location.href = "{{ url_for('main.view_projects') }}";
         };
     };
 </script>
@@ -15,7 +15,7 @@
 {% block body %}
 <div id="halfPage">
     <h2 class="class1">Group project sign-up</h2>
-    <form action="{{ url_for('register_project') }}" method="POST">
+    <form action="{{ url_for('main.register_project') }}" method="POST">
 
         <input type="number" name="grpMembers" id="groupMembers" placeholder="Enter number of group members" min="1"
             max="4"><br><br>

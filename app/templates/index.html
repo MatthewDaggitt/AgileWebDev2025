@@ -6,7 +6,7 @@
 <script>    
     window.onload = function() {
         document.getElementById("registerProjectBtn").onclick = function() {
-            window.location.href = "{{ url_for('register_project') }}";
+            window.location.href = "{{ url_for('main.register_project') }}";
         };
     };
 </script>
@@ -31,9 +31,9 @@
             <td> {{ student.id }} </td>
             {% endfor %}
             <td>
-                {{ if current_user.project_id == project.id }}
+                {% if current_user.project_id == project.id %}
                     <button> Delete </button>
-                {{ endif }}
+                {% endif %}
             </td>
         </tr>
         {% endfor %}
