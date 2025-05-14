@@ -20,5 +20,5 @@ def try_to_login_user(student_id, password, registering):
         elif not student.check_password(password):
             return 'Wrong password'
         else:
-            return "nothing" # student
+            return student
         
