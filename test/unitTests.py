@@ -30,7 +30,7 @@ class StudentTests(unittest.TestCase):
 
     
     def test_login_method(self):
-        student1 = self.addStudent(1, "a")
+        student1 = self.addStudent(3, "a")
 
         self.assertEqual(
             student1, 
